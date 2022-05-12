@@ -60,28 +60,31 @@ var fight= function(enemy){
     //remove player's health by subtracting the amount set in the enemy.attack variable
   
      var damage= randomNumber(enemy.attack - 3, enemy.attack);
+     //remove enemys health by subtracting the amount we set in the damage variable
+
      playerInfo.health=Math.max(0,playerInfo.health- damage);
-     
-    //Log a resulting message to the console so we know that it worked.
-    console.log(
+     console.log(
         enemy.name + 'attacked ' + playerInfo.name + '.' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
      );
      //check players health
      if(playerInfo.health <= 0) {
          window.alert(playerInfo.name+"has died!"); 
-         //leave while()loop if player is dead
+         //leave while() loop if player is dead
          break;
-     } else {
-         window.alert(playerInfo.name+'still has' +playerInfo.health +'health left.');
-     
+       
+     }else{
+       window.alert(playerInfo.name + " still has" + playerInfo.health + "health left.");
+
+
+
      }
+    }
+     //switch turn order for next round
+     isPlayerTurn = !isPlayerTurn;
     } //end of while loop
+  }; // end of fight function
 
-     };
-
-//end of fight function
-   
-// function to start game fight ()
+  //function to start a new game
 var startGame = function() {
     //reset player status
     playerInfo.reset
@@ -259,15 +262,17 @@ var endGame =function() {
 var shop= function(){
     //ask player what they'd like to do
     var shopOptionPrompt=window.prompt(
-        ''
-    )
+      "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter on1 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
+        
+    );
+    //convert answer from prompt to an actualy number
+    shopOptionPrompt=parseInt(shopOptionPrompt);
+
+
+
      //function to generate a random numeric value
 
-     var randomNumber = function() {
-        var value=Math.floor(Math.random()*21)+40;
 
-        return value;
-    };
 
   //ask player if they'd like to play again
   var playAgainConfirm = window.confirm("Would you like to play again?");
